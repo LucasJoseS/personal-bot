@@ -1,35 +1,18 @@
-import pyautogui
-import time
+from flask import Flask, render_template, redirect
+from bot.lib.fiscal import fiscal as fiscal_action
+
+app = Flask(__name__)
 
 
-def click_sleep_write(x, y, s):
-    pyautogui.click(x, y)
-    time.sleep(0.2)
-    pyautogui.write(s)
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
-def standart_sp():
-    pyautogui.click(35, 255)
-    time.sleep(0.2)
-
-    click_sleep_write(490, 320, "49")
-    click_sleep_write(490, 350, "49")
-    click_sleep_write(260, 375, "1")
-
-
-def standart_ms():
-    pyautogui.click(110, 255)
-    time.sleep(0.2)
-
-    click_sleep_write(490, 320, "49")
-    click_sleep_write(490, 350, "49")
-    click_sleep_write(260, 375, "104")
-
-
+@app.route("/fiscal")
 def fiscal():
-    standart_sp()
-    standart_ms()
+    fiscal_action()
+    return redirect("/")
 
 
-time.sleep(3)
-fiscal()
+app.run(host="0.0.0.0")
