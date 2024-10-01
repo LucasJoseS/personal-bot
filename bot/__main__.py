@@ -1,18 +1,15 @@
-from flask import Flask, render_template, redirect
-from bot.lib.fiscal import fiscal as fiscal_action
+from flask import Flask, render_template, request
+from bot.lib.register import register
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        register("Test", "00000001", 0, "00000000", "00000000")
+
     return render_template("index.html")
-
-
-@app.route("/fiscal")
-def fiscal():
-    fiscal_action()
-    return redirect("/")
 
 
 app.run(host="0.0.0.0")
