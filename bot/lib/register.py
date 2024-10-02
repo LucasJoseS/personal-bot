@@ -2,6 +2,7 @@ from bot.lib.utils import click_sleep_write, press_sleep
 from bot.lib.fiscal import fiscal
 
 
+"""
 def register(desc, barcode, price, group, ncm, save=False):
     # press_sleep("F2")
 
@@ -14,3 +15,4 @@ def register(desc, barcode, price, group, ncm, save=False):
 
     if save:
         press_sleep("F10")
+"""
