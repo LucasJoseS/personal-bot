@@ -1,18 +1,19 @@
-from bot.lib.utils import click_sleep_write, press_sleep
+from bot.lib.utils import click_write
 from bot.lib.fiscal import fiscal
 
 
-"""
-def register(desc, barcode, price, group, ncm, save=False):
-    # press_sleep("F2")
+def register(
+    desc: str,
+    group: str,
+    supplier: str = "1",
+    un: str = "un",
 
-    click_sleep_write(145, 205, desc, True)
-    click_sleep_write(105, 230, "un")
-    click_sleep_write(115, 260, group, True)
-    click_sleep_write(25, 630, "1", True)
+    ncm: str = None
+):
+    click_write(145, 205, desc)
+    click_write(105, 230, un)
+    click_write(115, 260, group)
+    click_write(25, 640, supplier)
 
-    fiscal(ncm)
-
-    if save:
-        press_sleep("F10")
-"""
+    if ncm is not None:
+        fiscal(ncm)

@@ -15,13 +15,19 @@ def _standart_ms():
     click_write(260, 375, "104", True)
 
 
-def _ncm(s):
+def _ncm(s: str):
+    if not type(s) is str:
+        raise TypeError(s)
+
     click_write(130, 180, s, True)
     press("enter", 4)
     press("esc")
 
 
-def fiscal(s):
+def fiscal(s: str):
+    if not type(s) is str:
+        raise TypeError(s)
+
     click(150, 130)
 
     _ncm(s)
