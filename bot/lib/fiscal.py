@@ -25,6 +25,9 @@ def _ncm(s: str):
 
 
 def fiscal(s: str):
+    if s is None:
+        return
+
     if not type(s) is str:
         raise TypeError(s)
 
