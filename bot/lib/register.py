@@ -17,7 +17,10 @@ def register(
     value_4: str = None,
 
 
-    ncm: str = None
+    ncm: str = None,
+
+    _create_edit: bool = True,
+    _save: bool = True,
 ):
     click_write(145, 205, desc)
     click_write(105, 230, un)

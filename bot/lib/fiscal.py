@@ -28,9 +28,6 @@ def fiscal(s: str):
     if s is None:
         return
 
-    if not type(s) is str:
-        raise TypeError(s)
-
     click(150, 130)
 
     _ncm(s)
