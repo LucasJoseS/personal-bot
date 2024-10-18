@@ -1,5 +1,5 @@
 from bot.lib.utils import click_write
-from bot.lib.fiscal import fiscal
+from bot.lib.fiscal import _standart_sp, _standart_ms
 
 
 def register(
@@ -24,7 +24,7 @@ def register(
 ):
     click_write(145, 205, desc)
     click_write(105, 230, un)
-    click_write(115, 260, group)
+    # click_write(115, 260, group)
 
     click_write(305, 410, value_0, True)
     click_write(305, 425, value_1, True)
@@ -34,4 +34,6 @@ def register(
 
     click_write(25, 640, supplier)
 
-    fiscal(ncm)
+    # fiscal(ncm)
+    _standart_sp()
+    _standart_ms()
