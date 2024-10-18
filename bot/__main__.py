@@ -1,35 +1,22 @@
 from bot.lib.register import register
-from bot.lib.utils import press, write_confirm
-from sys import argv
+from os import environ
 
-import json
-import pyautogui
+import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
-"""
-from flask import Flask, request
+genai.configure(api_key=environ.get("GOOGLE_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-pro")
+config = genai.GenerationConfig(temperature=2)
 
-api = Flask(__name__)
+print(model.generate_content(
+    "NCM valido para BATOM, diga apenas o mais utilizado, diga apenas o número",
 
+    safety_settings={
+        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+    },
 
-@api.route("/register", methods=["GET", "POST"])
-def index():
-    pass
-
-
-api.run(host="0.0.0.0")
-"""
-
-if pyautogui.confirm(text="Tela do sistema", buttons=["Ok", "Cancel"]) == "Ok":
-    with open(argv[1]) as fp:
-        items: map = json.load(fp)
-
-        for item in items:
-            press("F2")
-            write_confirm(item)
-            register(items[item]["desc"], value_2=items[item]["value_2"])
-            press("F10")
-
-            if pyautogui.confirm(text="Next", buttons=["Ok", "Cancel"]) == "Ok":
-                continue
-            else:
-                exit()
+    generation_config=config
+).text)
